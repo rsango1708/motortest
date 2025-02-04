@@ -7,14 +7,14 @@ import string
 import itertools
 import time
 from time import sleep
-#import ld06
+import ld06
 #from unittest import mock
-#import RPi.GPIO as gpio
+import RPi.GPIO as gpio
 from unittest import mock
 #from std_msgs.msg import String
 end=False
 # Create a fake GPIO module
-class MockGPIO:
+'''class MockGPIO:
     BCM = "BCM"
     OUT = "OUT"
     LOW = "LOW"
@@ -34,12 +34,12 @@ class MockGPIO:
         print(f"Mock GPIO PWM setup: Pin {pin}, Frequency {freq}")
         return mock.Mock(start=lambda: print("PWM started"), ChangeDutyCycle=lambda speed: print(f"PWM speed set to {speed}"))
 
-# Replace RPi.GPIO with the mock class
-gpio = MockGPIO()
+# Replace RPi.GPIO with the mock class'''
+
 
 gpio.setmode(gpio.BCM)
 import json
-class MockLD06:
+'''class MockLD06:
     def __init__(self, port):
         print(f"Mock LiDAR initialized on {port}")
 
@@ -56,12 +56,12 @@ class MockLD06:
         # Fake some LiDAR scans
         return iter([[(90, 130), (0, 230), (180, 250), (270, 400)]])
 
-# Replace ld06 import with the mock class
-ld06 = MockLD06
-lidar = ld06('/dev/ttyS0')
+# Replace ld06 import with the mock class'''
+#ld06 = MockLD06
+#lidar = ld06('/dev/ttyS0')
 OBSTACLE_THRESHOLD = 25.5  
 
-def process_lidar_data():
+'''def process_lidar_data():
     
     lidar.start_motor()
     print("Starting scan...")
@@ -103,11 +103,11 @@ def visualize_obstacles(dynamic_obstacle_nodes):
         plt.show()
 
 
-process_lidar_data()
+process_lidar_data()'''
 
 
 print("a")
-def dynamic_obstacle_recognition(obstacles, path, node_positions):
+'''def dynamic_obstacle_recognition(obstacles, path, node_positions):
     dynamic_updates = set()
     for i in range(len(path) - 1):
         current_node = path[i]
@@ -127,7 +127,7 @@ def dynamic_obstacle_recognition(obstacles, path, node_positions):
     
     updated_path = [node for node in path if node not in obstacles]
     
-    return updated_path, obstacles
+    return updated_path, obstacles'''
 
 
 
@@ -524,7 +524,7 @@ def run_navigation_loop(graph, start_node, goal_node, heuristic, region_map, pos
 
 
 result_path = greedy_best_first_search_hierarchical(graph, start_node, goal_node, heuristic, region_map)
-dynamic_obstacles=dynamic_obstacle_recognition(obstacles,result_path,pos)
+#dynamic_obstacles=dynamic_obstacle_recognition(obstacles,result_path,pos)
 result_path2 = greedy_best_first_search_hierarchical(graph, start_node, goal_node, heuristic, region_map)
 execute_path(result_path2,pos)
 
