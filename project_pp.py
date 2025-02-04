@@ -303,10 +303,10 @@ def get_node_from_angle_distance(angle, distance, pos,current_node):
 
     return closest_node
 
-'''rospy.init_node('movement_publisher_node', anonymous=True)
+rospy.init_node('movement_publisher_node', anonymous=True)
 
 
-direction_pub = rospy.Publisher('/direction', String, queue_size=10)'''
+direction_pub = rospy.Publisher('/direction', String, queue_size=10)
 
 motor_select_pins = {
     
@@ -389,7 +389,7 @@ def movement( direction2, duration=2):
         motor4(direction='forward',speed=50)
 
     print(f"Moving {direction2}")
-    #direction_pub.publish(direction2)
+    direction_pub.publish(direction2)
     global a
     a=a+1
     print("A is",a)
