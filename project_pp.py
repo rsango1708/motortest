@@ -8,55 +8,17 @@ import itertools
 import time
 from time import sleep
 import ld06
-#from unittest import mock
 import RPi.GPIO as gpio
 from unittest import mock
-#from std_msgs.msg import String
+from std_msgs.msg import String
 end=False
-# Create a fake GPIO module
-'''class MockGPIO:
-    BCM = "BCM"
-    OUT = "OUT"
-    LOW = "LOW"
-    
-    def setmode(self, mode):
-         print(f"Mock GPIO mode set to {mode}")
-        
-    
-    def setup(self, pin, mode):
-        print(f"Mock GPIO setup: Pin {pin}, Mode {mode}")
-        
-    
-    def output(self, pin, value):
-        print(f"Mock GPIO output: Pin {pin}, Value {value}")
-    
-    def PWM(self, pin, freq):
-        print(f"Mock GPIO PWM setup: Pin {pin}, Frequency {freq}")
-        return mock.Mock(start=lambda: print("PWM started"), ChangeDutyCycle=lambda speed: print(f"PWM speed set to {speed}"))
 
-# Replace RPi.GPIO with the mock class'''
+
 
 
 gpio.setmode(gpio.BCM)
 import json
-'''class MockLD06:
-    def __init__(self, port):
-        print(f"Mock LiDAR initialized on {port}")
 
-    def start_motor(self):
-        print("Mock LiDAR motor started")
-
-    def stop_motor(self):
-        print("Mock LiDAR motor stopped")
-
-    def disconnect(self):
-        print("Mock LiDAR disconnected")
-
-    def iter_scans(self):
-        # Fake some LiDAR scans
-        return iter([[(90, 130), (0, 230), (180, 250), (270, 400)]])
-
-# Replace ld06 import with the mock class'''
 #ld06 = MockLD06
 #lidar = ld06('/dev/ttyS0')
 OBSTACLE_THRESHOLD = 25.5  
@@ -486,37 +448,7 @@ heuristic = {
     for point, coord in pos.items()
 }
 
-'''result_path = greedy_best_first_search_hierarchical(graph, start_node, goal_node, heuristic, region_map)
-print("Len is",len(result_path))
-def run_navigation_loop(graph, start_node, goal_node, heuristic, region_map, pos):
-    global a
-    result_path = greedy_best_first_search_hierarchical(graph, start_node, goal_node, heuristic, region_map)
-    print("Len is",len(result_path))
-    while a!=len(result_path):
-        result_path = greedy_best_first_search_hierarchical(graph, start_node, goal_node, heuristic, region_map)
-        print(a)
-        # Perform LiDAR scan and update obstacles
-        dynamic_obstacles = dynamic_obstacle_recognition(obstacles, result_path, pos)
 
-        # Recalculate the path based on the updated obstacles
-        result_path = greedy_best_first_search_hierarchical(graph, start_node, goal_node, heuristic, region_map)
-
-        # Execute the new path
-        execute_path(result_path, pos)
-
-        print(f"Updated Path from {start_node} to {goal_node}: {result_path}")
-        print(f"Updated obstacles: {obstacles}")
-
-        # Visualize the updated graph and path
-        
-
-        sleep(0.5)  # Delay to simulate time for new LIDAR data to be gathered
-        
-    #visualize_graph(graph, result_path, pos, region_map)
-    print("out of loop")
-#visualize_graph(graph, result_path, pos, region_map)
-# Start the loop
-#run_navigation_loop(graph, start_node, goal_node, heuristic, region_map, pos)'''
 
 
 
@@ -538,7 +470,7 @@ print(f"obstacle nodes: {obstacle_nodes}")
 
 
 
-'''def simulate_ros_publish(pos, heuristic):
+def simulate_ros_publish(pos, heuristic):
     # Create the map_data as a dictionary
     map_data = {node: {"coordinates": coord, "heuristic": heuristic[node]} for node, coord in pos.items()}
     
@@ -561,4 +493,4 @@ print(f"obstacle nodes: {obstacle_nodes}")
     print(f"Published map data to /map topic:\n{map_data_json}")
 
 # Example usage
-simulate_ros_publish(pos, heuristic)'''
+simulate_ros_publish(pos, heuristic)
